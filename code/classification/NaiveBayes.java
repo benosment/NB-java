@@ -11,18 +11,13 @@ public class NaiveBayes {
 		int fn = 0;
 
 		if (args.length < 2) {
-			System.out.println("Usage: java NaiveBayes, training_file testing_file");
+			System.out.println("Usage: java classification.NaiveBayes training_file testing_file");
 			System.exit(0);
 		} else {
-			// TODO: classify each test object
-			// TODO: print out basic statistics (TP, TN, FP, FN)
-
 			// Create a new classifier
 			NBClassifier nbclass = new NBClassifier();
 			
-			// TODO: move the training section into a function/method?
-			// TODO: add logging?
-			
+
 			// read in the training file, print label, number of attributes, total examples
 			System.out.format("Reading training file: %s\n", args[0]);
 			try {
@@ -31,7 +26,6 @@ public class NaiveBayes {
 				int num_train = 0;
 				int num_features = 0;
 				while ((line = reader.readLine()) != null) {
-					//System.out.println(line);
 					String[] splitLine = line.split("\t", -1);
 					num_features = splitLine.length - 1;
 					num_train++;
@@ -83,7 +77,9 @@ public class NaiveBayes {
 			}
 			
 			//System.out.println(nbclass);
-			System.out.format("TP: %d TN %d FP %d FN %d\n", tp, tn, fp, fn);
+			// true positive, false negative, false positive and true negative.
+			//System.out.format("TP: %d TN %d FP %d FN %d\n", tp, tn, fp, fn);
+			System.out.format("%d\n%d\n%d\n%d\n", tp, fn, fp, tn);
 		}
 	}
 }
