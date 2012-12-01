@@ -8,7 +8,7 @@ public class WeightedRandomSample {
 
 	ArrayList<String[]> data;
 	ArrayList<Double> weights;
-	
+	ArrayList<Double> d_save;
 	public WeightedRandomSample(String training_filename, ArrayList<Double> d) {
 		// read the file, store it in a array
 		BufferedReader reader;
@@ -23,7 +23,7 @@ public class WeightedRandomSample {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		d_save = d;
 		// construct a summation of all weights
 		weights = new ArrayList<Double>();
 		Double weight_sum = 0.0;
@@ -37,8 +37,15 @@ public class WeightedRandomSample {
 		Double random_weight = Math.random();
 		
 		int i = 0;
-		while (random_weight > weights.get(i)) {
-			i++;
+		try {
+			while (random_weight > weights.get(i)) {
+				i++;
+			}
+		} catch (Exception e){
+			System.out.println(i);
+			System.out.println(weights.get(i-1));
+			System.out.println(random_weight);
+			System.out.println(d_save.get(i-1));
 		}
 		
 		return data.get(i);

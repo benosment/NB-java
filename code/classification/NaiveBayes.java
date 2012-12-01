@@ -17,7 +17,6 @@ public class NaiveBayes {
 			// Create a new classifier
 			NBClassifier nbclass = new NBClassifier();
 			
-
 			// read in the training file, print label, number of attributes, total examples
 			System.out.format("Reading training file: %s\n", args[0]);
 			try {
@@ -76,10 +75,17 @@ public class NaiveBayes {
 				ex.printStackTrace();
 			}
 			
-			//System.out.println(nbclass);
 			// true positive, false negative, false positive and true negative.
-			//System.out.format("TP: %d TN %d FP %d FN %d\n", tp, tn, fp, fn);
-			System.out.format("%d\n%d\n%d\n%d\n", tp, fn, fp, tn);
+			//System.out.format("%d\n%d\n%d\n%d\n", tp, fn, fp, tn);
+			System.out.format("True Positive: %d\n", tp);
+			System.out.format("True Negative: %d\n", tn);
+			System.out.format("False Positive: %d\n", fp);
+			System.out.format("False Negative: %d\n", fn);
+			System.out.format("Accuracy: %f\n", (double)(tp+tn)/(tp+tn+fp+fn));
+			System.out.format("Error Rate: %f\n", (double)(fp+fn)/(tp+tn+fp+fn));
+			System.out.format("Sensitivity: %f\n", (double)(tp)/(tp+fn));
+			System.out.format("Specificity: %f\n", (double)(tn)/(tn+fn));
+			System.out.format("Precision: %f\n", (double)(tp)/(tp+fp));
 		}
 	}
 }
