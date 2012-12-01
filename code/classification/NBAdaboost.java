@@ -208,7 +208,14 @@ public class NBAdaboost {
 			System.out.format("Sensitivity: %f\n", (double)(tp)/(tp+fn));
 			System.out.format("Specificity: %f\n", (double)(tn)/(tn+fn));
 			System.out.format("Precision: %f\n", (double)(tp)/(tp+fp));
-			
+			double precision = (double)(tp) / (tp + fp);
+			double recall = (double)(tp) / (tp + fn);
+			double f = (2 * precision * recall) / (precision + recall);
+			double f_beta_0_5 = ((1 + (0.5)*(0.5)) * precision * recall) / (0.5 * 0.5 * precision + recall);
+			double f_beta_2 = ((1 + (2)*(2)) * precision * recall) / (2 * 2 * precision + recall);
+			System.out.format("F1 score: %f\n", f);
+			System.out.format("F beta (0.5): %f\n", f_beta_0_5);
+			System.out.format("F beta (2): %f\n", f_beta_2);		
 		}
 	}
 
